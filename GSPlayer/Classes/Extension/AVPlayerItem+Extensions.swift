@@ -35,7 +35,7 @@ public extension AVPlayerItem {
 
 extension AVPlayerItem {
     
-    static var loaderPrefix: String = "__loader__"
+    static var loaderPrefix: String = String(Array("LOADERPROTOCOL").reversed())
     
     var url: URL? {
         guard
