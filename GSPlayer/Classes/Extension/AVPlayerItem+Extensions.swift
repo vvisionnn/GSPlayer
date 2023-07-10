@@ -55,7 +55,7 @@ extension AVPlayerItem {
         return configuration.downloadedByteCount >= 1024 * 768
     }
     
-    convenience init(loader url: URL) {
+		public convenience init(loader url: URL, options: [String: Any]? = nil) {
         if url.isFileURL || url.pathExtension == "m3u8" {
             self.init(url: url)
             return
@@ -70,9 +70,9 @@ extension AVPlayerItem {
             self.init(url: url)
             return
         }
-        
-        let urlAsset = AVURLAsset(url: loaderURL)
-        urlAsset.resourceLoader.setDelegate(VideoLoadManager.shared, queue: .main)
+			
+				let urlAsset = AVURLAsset(url: loaderURL, options: options)
+				urlAsset.resourceLoader.setDelegate(VideoLoadManager.shared, queue: .main)
         
         self.init(asset: urlAsset)
     }

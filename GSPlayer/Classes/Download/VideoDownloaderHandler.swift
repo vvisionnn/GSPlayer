@@ -85,8 +85,8 @@ extension VideoDownloaderHandler: VideoDownloaderSessionDelegateHandlerDelegate 
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         #if !os(macOS)
         guard
-            let mimeType = response.mimeType,
-            mimeType.contains("video/")
+            let mimeType = response.mimeType
+            // (mimeType.contains("video/") || mimeType.contains("audio/"))
             else { completionHandler(.cancel); return }
         #endif
         
